@@ -1,0 +1,27 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="nvim" cwd="~/Code" {
+    pane command="nvim" {
+      args "."
+    }
+  }
+  tab name="opencode" cwd="~/Code" {
+    pane command="opencode"
+  }
+  tab name="notes" cwd="~/Notes/Code" split_direction="vertical" {
+    pane size="85%" command="nvim" {
+      args "."
+    }
+    pane size="15%" command="mdbook" {
+      args "serve"
+    }
+  }
+}

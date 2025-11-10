@@ -12,9 +12,10 @@ if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- For example, changing the color scheme:
 -- config.color_scheme = 'AdventureTime'
-config.color_scheme = 'Catppuccin Macchiato'
+-- config.color_scheme = 'Catppuccin Macchiato'  -- to switch back
+config.color_scheme = 'Everforest Dark (Gogh)'
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 12
+config.font_size = 10
 -- config.default_prog = {"/usr/local/bin/nu", "-l"}
 
 config.window_frame = {
