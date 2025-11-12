@@ -1,0 +1,44 @@
+layout {
+  cwd "~/Projects/orders/app_ordermanagement_order/core-ui"
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="Server" {
+    pane command="npm" {
+      args "run" "start"
+    }
+  }
+  tab name="Unit Tests"
+  tab cwd="cypress-tests" name="Cypress"
+  tab split_direction="vertical" name="Dev" {
+    pane size="85%" command="nvim" focus=true {
+      args "."
+    }
+    pane size="15%" command="zsh" {
+      args "-c" "source ~/.zshrc && nvm use 22 && copilot"
+    }
+  }
+  tab name="Terminal"
+  tab split_direction="vertical" cwd="~/Projects/notes/work-notes" name="Notes" {
+    pane size="80%" command="nvim" focus=true {
+      args "."
+    }
+    pane size="20%" command="mdbook" {
+      args "serve" "-o"
+    }
+  }
+  tab split_direction="vertical" cwd="~" name="Config" {
+    pane size="85%" command="nvim" focus=true {
+      args "dotfiles"
+    }
+    pane size="15%" command="zsh" {
+      args "-c" "cd ~/dotfiles && source ~/.zshrc && nvm use 22 && copilot"
+    }
+  }
+}

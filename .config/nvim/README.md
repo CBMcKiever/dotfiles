@@ -24,7 +24,7 @@ This is a Neovim configuration using Lua and the Lazy plugin manager. It provide
 
 ## Package Management
 
-- **Mason**: A package manager for installing LSP servers, linters, and formatters. Used to ensure tools like lua_ls, tsserver, and gopls are installed. Run `:Mason` in Neovim to view and manage packages.
+- **Mason**: A package manager for installing LSP servers, linters, and formatters. Used to ensure tools like lua_ls, ts_ls, and gopls are installed. Run `:Mason` in Neovim to view and manage packages.
 
 ## Keybinds
 

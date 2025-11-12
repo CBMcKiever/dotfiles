@@ -13,6 +13,7 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.wo.foldenable = true
 vim.wo.foldlevel = 99
+vim.g.copilot_node_command = "~/.nvm/versions/node/v20.12.2/bin/node"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
