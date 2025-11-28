@@ -7,6 +7,15 @@ return {
 			local builtin = require("telescope.builtin")
 			local telescope = require("telescope")
 			
+			-- Function to grep visual selection
+			local function grep_visual_selection()
+				local saved_reg = vim.fn.getreg('"')
+				vim.cmd([[noau normal! "vy]])
+				local visual_selection = vim.fn.getreg('v')
+				vim.fn.setreg('"', saved_reg)
+				builtin.grep_string({ search = visual_selection })
+			end
+			
 			-- Function to select directory for live_grep
 			local function ts_select_dir_for_grep(prompt_bufnr)
 				local action_state = require("telescope.actions.state")
@@ -38,6 +47,8 @@ return {
 			
 			vim.keymap.set('n', '<leader>sf', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>sg', builtin.live_grep, {})
+			vim.keymap.set('n', '<leader>sw', builtin.grep_string, {})
+			vim.keymap.set('v', '<leader>sw', grep_visual_selection, {})
 			vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {})
 		end
 	},
@@ -100,10 +111,18 @@ return {
 			}
 			telescope.load_extension("ui-select")
 			telescope.load_extension("file_browser")
+			telescope.load_extension('fzf')
 		end
 	},
 	{
 		'nvim-telescope/telescope-file-browser.nvim',
 		dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
+	},
+	{
+		'nvim-telescope/telescope-fzf-native.nvim',
+		build = 'make',
+		cond = function()
+			return vim.fn.executable 'make' == 1
+		end,
 	}
 }

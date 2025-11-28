@@ -14,12 +14,14 @@ This is a Neovim configuration using Lua and the Lazy plugin manager. It provide
 - **alpha-nvim**: Start screen/dashboard.
 - **catppuccin**: Color scheme.
 - **nvim-cmp + LuaSnip**: Autocompletion with snippets.
+- **diffview.nvim**: Git diff viewer with file history and merge tool support.
 - **vim-fugitive + vim-rhubarb**: Git integration.
 - **lsp_lines + mason + nvim-lspconfig**: LSP support for Lua, TypeScript, HTML, Angular, CSS, Emmet.
+  - **Emmet**: Configured for HTML abbreviations in TypeScript files (Angular inline templates). Use shortcuts like `div.classname` + `<C-Space>` to expand.
 - **lualine**: Statusline.
 - **neo-tree**: File explorer.
 - **none-ls**: Formatting (Stylua, Prettier) and diagnostics (ESLint).
-- **telescope**: Fuzzy finder with UI select extension.
+- **telescope**: Fuzzy finder with UI select extension and fzf-native sorter for improved performance.
 - **nvim-treesitter**: Syntax highlighting and indentation for C, Lua, Vim, JavaScript, HTML, Angular, etc.
 
 ## Package Management
@@ -30,9 +32,6 @@ This is a Neovim configuration using Lua and the Lazy plugin manager. It provide
 
 - `<leader>fe`: Toggle Neo-tree file explorer.
 - `<leader>fE`: Focus Neo-tree file explorer.
-- `<leader>sf`: Telescope find files.
-- `<leader>sg`: Telescope live grep.
-- `<leader>fb`: Telescope file browser.
 - `K`: LSP hover.
 - `gd`: LSP go to definition.
 - `<leader>ca`: LSP code action (normal and visual mode).
@@ -44,6 +43,38 @@ This is a Neovim configuration using Lua and the Lazy plugin manager. It provide
 - `za`: Toggle code fold.
 - `zR`: Open all folds.
 - `zM`: Close all folds.
+
+### Telescope (Fuzzy Finder)
+
+- `<leader>sf`: Find files in the current directory.
+- `<leader>sg`: Live grep - search for text across all files.
+- `<leader>sw`: Grep the word under cursor across all files (normal mode) or selected text (visual mode).
+- `<leader>fb`: Open file browser at current file's directory.
+- `<C-f>` (in live_grep): Select a specific directory to grep in.
+
+**Common Usage:**
+- Find files by name: `<leader>sf` and start typing
+- Search for text in project: `<leader>sg` and type your search
+- Search for current word: Place cursor on word and press `<leader>sw`
+- Search for text with special chars (like `my-word`): Visually select the text and press `<leader>sw`
+- Browse files: `<leader>fb` for visual file navigation
+
+### Diffview (Git Diff Viewer)
+
+- `<leader>dv`: Open diffview to compare working directory against index.
+- `<leader>dh`: Open file history for all files in the repository.
+- `<leader>df`: Open file history for the current file.
+- `<leader>dq`: Close the current diffview.
+- `<tab>` / `<s-tab>`: Navigate between changed files in diffview.
+- `[c` / `]c`: Jump between diff hunks.
+- `-` or `s`: Stage/unstage a file (in file panel).
+- `X`: Restore file to the left side state (in file panel).
+
+**Common Usage:**
+- View uncommitted changes: `:DiffviewOpen`
+- Compare against a specific commit: `:DiffviewOpen HEAD~2`
+- View commit range: `:DiffviewOpen d4a7b0d..519b30e`
+- View file history: `:DiffviewFileHistory %` (current file) or `:DiffviewFileHistory` (all files)
 
 ## Modifying the Configuration
 

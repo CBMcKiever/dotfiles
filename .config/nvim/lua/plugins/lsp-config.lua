@@ -44,8 +44,28 @@ return {
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
+			local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
+			local angular_server_dir = mason_packages .. "/angular-language-server"
 			lspconfig.angularls.setup({
 				capabilities = capabilities,
+				cmd = { 
+					'ngserver', 
+					'--stdio', 
+					'--tsProbeLocations', 
+					angular_server_dir,
+					'--ngProbeLocations',
+					angular_server_dir,
+				},
+				on_new_config = function(new_config)
+					new_config.cmd = { 
+						'ngserver', 
+						'--stdio', 
+						'--tsProbeLocations', 
+						angular_server_dir,
+						'--ngProbeLocations',
+						angular_server_dir,
+					}
+				end,
 			})
 			lspconfig.eslint.setup({
 				capabilities = capabilities,
@@ -55,6 +75,14 @@ return {
       })
        lspconfig.emmet_ls.setup({
          capabilities = capabilities,
+         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'scss', 'typescript' },
+         init_options = {
+           html = {
+             options = {
+               ["bem.enabled"] = true,
+             },
+           },
+         },
        })
        lspconfig.gopls.setup({
          capabilities = capabilities,
