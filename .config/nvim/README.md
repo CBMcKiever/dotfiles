@@ -34,7 +34,11 @@ This is a Neovim configuration using Lua and the Lazy plugin manager. It provide
 - `<leader>fE`: Focus Neo-tree file explorer.
 - `K`: LSP hover.
 - `gd`: LSP go to definition.
+- `gvd`: LSP go to definition in vertical split.
+- `gxd`: LSP go to definition in horizontal split.
 - `<leader>ca`: LSP code action (normal and visual mode).
+- `<leader>le`: Toggle underlines for errors.
+- `<leader>lw`: Toggle underlines for warnings (includes hints and info).
 - `<leader>gf`: Format buffer.
 - `<C-Space>`: Trigger completion (insert mode).
 - `<CR>`: Confirm completion (insert mode).
@@ -51,6 +55,8 @@ This is a Neovim configuration using Lua and the Lazy plugin manager. It provide
 - `<leader>sw`: Grep the word under cursor across all files (normal mode) or selected text (visual mode).
 - `<leader>fb`: Open file browser at current file's directory.
 - `<C-f>` (in live_grep): Select a specific directory to grep in.
+- `<C-v>` (in picker): Open selected file in vertical split.
+- `<C-x>` (in picker): Open selected file in horizontal split.
 
 **Common Usage:**
 - Find files by name: `<leader>sf` and start typing

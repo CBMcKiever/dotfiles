@@ -1,0 +1,80 @@
+layout {
+  cwd "~/Projects/carrier360/ui-repos"
+  
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  
+  tab name="Dev Server" {
+    pane
+  }
+  
+  tab name="Editor" focus=true split_direction="vertical" {
+    pane size="70%" command="nvim" {
+      args "."
+    }
+    pane size="30%" split_direction="horizontal" {
+      pane size="75%" {
+        start_suspended true
+        command "zsh"
+        args "-c" "source ~/.zshrc && nvm use 22 && opencode"
+      }
+      pane size="25%"
+    }
+  }
+
+  tab name="Worktrees" split_direction="horizontal" {
+    pane split_direction="vertical" size="70%" {
+      pane
+      pane
+    }
+    pane split_direction="vertical" size="30%" {
+      pane
+      pane
+    }
+  }
+  
+  tab name="Daily" {
+    pane command="nib"
+  }
+
+  tab cwd="~/Projects/notes/work-notes" name="Notes" split_direction="vertical" {
+    pane size="80%" borderless=true command="nvim" {
+      args "."
+    }
+    pane size="20%" command="mdbook" {
+      args "serve"
+    }
+  }
+  
+  tab cwd="~/dotfiles" name="Config" split_direction="vertical" {
+    pane size="80%" borderless=true command="nvim" {
+      args "."
+    }
+    pane size="20%" {
+      command "zsh"
+      args "-c" "source ~/.zshrc && nvm use 22 && opencode"
+    }
+  }
+
+  tab cwd="~/Projects/carrier360/ui-repos/ui_carrier360_worktrees/pr-review" name="PR Review" split_direction="vertical" {
+    pane size="70%" command="nvim" {
+      args "."
+    }
+    pane size="30%" split_direction="horizontal" {
+      pane size="75%" {
+        start_suspended true
+        command "zsh"
+        args "-c" "source ~/.zshrc && nvm use 22 && opencode"
+      }
+      pane size="25%"
+    }
+  }
+  
+}

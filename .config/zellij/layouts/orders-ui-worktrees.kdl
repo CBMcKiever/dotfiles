@@ -1,0 +1,37 @@
+layout {
+  cwd "~/Projects/orders/ui/app_ordermanagement_order"
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="Edit" focus=true {
+    pane borderless=true command="nvim" focus=true {
+      args "."
+    }
+  }
+  tab name="Worktrees" split_direction="vertical" {
+    pane split_direction="horizontal" {
+      pane size="70%" cwd="~/Projects/orders/ui/app_ordermanagement_order" command="zsh" {
+        args "-c" "source ~/.zshrc && nvm use 22 && copilot"
+      }
+      pane size="30%" cwd="~/Projects/orders/ui/app_ordermanagement_order"
+    }
+    pane split_direction="horizontal" {
+      pane size="70%" cwd="~/Projects/orders/ui/async-await-migration" command="zsh" {
+        args "-c" "source ~/.zshrc && nvm use 22 && copilot"
+      }
+      pane size="30%" cwd="~/Projects/orders/ui/async-await-migration"
+    }
+    pane split_direction="horizontal" {
+      pane size="70%" cwd="~/Projects/orders/ui/reviews" command="zsh" {
+        args "-c" "source ~/.zshrc && nvm use 22 && copilot"
+      }
+      pane size="30%" cwd="~/Projects/orders/ui/reviews"
+    }
+  }
+}

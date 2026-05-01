@@ -49,7 +49,14 @@ return {
 			vim.keymap.set('n', '<leader>sg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>sw', builtin.grep_string, {})
 			vim.keymap.set('v', '<leader>sw', grep_visual_selection, {})
+			vim.keymap.set('n', '<leader>se', function() 
+				builtin.grep_string({ 
+					word_match = '-w',  -- Exact word match
+					use_regex = false   -- Treat input as literal string
+				}) 
+			end, {})
 			vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", {})
+			vim.keymap.set('n', '<leader>ss', builtin.spell_suggest, { desc = "Spell suggestions" })
 		end
 	},
 	{

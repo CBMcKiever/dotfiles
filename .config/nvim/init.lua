@@ -6,6 +6,14 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ' '
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.opt.spelllang = "en_us"
+-- Enable spell check only for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "md" },
+	callback = function()
+		vim.opt_local.spell = true
+	end,
+})
 vim.diagnostic.config({
 	virtual_text = false,
 })
