@@ -34,59 +34,66 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
+			vim.lsp.enable('lua_ls')
+			vim.lsp.config('lua_ls', {
 				capabilities = capabilities,
 			})
-			lspconfig.html.setup({
+			vim.lsp.enable('html')
+			vim.lsp.config('html', {
 				capabilities = capabilities,
 			})
-			lspconfig.ts_ls.setup({
+			vim.lsp.enable('ts_ls')
+			vim.lsp.config('ts_ls', {
 				capabilities = capabilities,
 			})
 			local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
 			local angular_server_dir = mason_packages .. "/angular-language-server"
-			lspconfig.angularls.setup({
+			vim.lsp.enable('angularls')
+			vim.lsp.config('angularls', {
 				capabilities = capabilities,
-				cmd = { 
-					'ngserver', 
-					'--stdio', 
-					'--tsProbeLocations', 
+				cmd = {
+					'ngserver',
+					'--stdio',
+					'--tsProbeLocations',
 					angular_server_dir,
 					'--ngProbeLocations',
 					angular_server_dir,
 				},
 				on_new_config = function(new_config)
-					new_config.cmd = { 
-						'ngserver', 
-						'--stdio', 
-						'--tsProbeLocations', 
+					new_config.cmd = {
+						'ngserver',
+						'--stdio',
+						'--tsProbeLocations',
 						angular_server_dir,
 						'--ngProbeLocations',
 						angular_server_dir,
 					}
 				end,
 			})
-			lspconfig.eslint.setup({
+			vim.lsp.enable('eslint')
+			vim.lsp.config('eslint', {
 				capabilities = capabilities,
 			})
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-      })
-       lspconfig.emmet_ls.setup({
-         capabilities = capabilities,
-         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'scss', 'typescript' },
-         init_options = {
-           html = {
-             options = {
-               ["bem.enabled"] = true,
-             },
-           },
-         },
-       })
-       lspconfig.gopls.setup({
-         capabilities = capabilities,
-       })
+			vim.lsp.enable('cssls')
+			vim.lsp.config('cssls', {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable('emmet_ls')
+			vim.lsp.config('emmet_ls', {
+				capabilities = capabilities,
+				filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'scss', 'typescript' },
+				init_options = {
+					html = {
+						options = {
+							["bem.enabled"] = true,
+						},
+					},
+				},
+			})
+			vim.lsp.enable('gopls')
+			vim.lsp.config('gopls', {
+				capabilities = capabilities,
+			})
        
 			-- Toggle diagnostic underline for errors and warnings
 			local diagnostic_state = {

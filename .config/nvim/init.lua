@@ -38,4 +38,19 @@ local opts = {}
 require("lazy").setup("plugins")
 vim.cmd("colorscheme everforest")
 
+vim.keymap.set("n", "<leader>mp", function()
+  local tmp = vim.fn.tempname() .. ".md"
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  vim.fn.writefile(lines, tmp)
+  local result = vim.fn.system("mdterm --no-color " .. vim.fn.shellescape(tmp))
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_err_writeln("mdterm error: " .. result)
+    return
+  end
+  vim.cmd("new")
+  vim.api.nvim_put(vim.split(result, "\n", { trimempty = true }), "l", true, true)
+end, { desc = "Preview markdown with mdterm" })
+
+vim.keymap.set("n", "<leader>mb", ":MarkdownPreview<CR>", { desc = "Preview markdown in browser" })
+
 
